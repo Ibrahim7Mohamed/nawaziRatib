@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSFiddle qhsvng73</title>
+
+  <style>
+    
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نوازي | احتفال الراتب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0F2C59;
+            --gold: #F8B400;
+            --light-gold: #FFD700;
+            --dark-navy: #0A1F3D;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            text-align: center;
+            background-color: var(--navy);
+            color: white;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(248, 180, 0, 0.1) 0%, transparent 50%),
+                linear-gradient(to bottom, var(--dark-navy), var(--navy));
+            overflow-x: hidden;
+        }
+        
+        .container {
+            background: rgba(15, 44, 89, 0.7);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            max-width: 680px;
+            width: 90%;
+            margin: 40px auto;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(248, 180, 0, 0.2);
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(248, 180, 0, 0.08) 0%, transparent 70%);
+            animation: rotate 60s linear infinite;
+            z-index: -1;
+        }
+        
+        .logo {
+            width: 200px;
+            height: auto;
+            margin: 0 auto 30px;
+            display: block;
+            filter: drop-shadow(0 4px 12px rgba(248, 180, 0, 0.5));
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .logo:hover {
+            transform: scale(1.08) rotate(-2deg);
+        }
+        
+        h1 {
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin: 0 0 20px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--light-gold));
+            border-radius: 3px;
+        }
+        
+        .lead-text {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin: 0 auto 30px;
+            max-width: 500px;
+        }
+        
+        .highlight {
+            color: var(--light-gold);
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            color: var(--navy);
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 50px;
+            margin: 20px 0;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(248, 180, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(248, 180, 0, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .btn:hover::after {
+            transform: translateX(100%);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .celebration-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        .celebration-message {
+            background: rgba(15, 44, 89, 0.9);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 20vh auto 0;
+            position: relative;
+            z-index: 1001;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(248, 180, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: fadeIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+        
+        .celebration-text {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--gold), var(--light-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0 0 20px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(248, 180, 0, 0.3);
+        }
+        
+        .heart {
+            color: #FF3366;
+            font-size: 3rem;
+            display: inline-block;
+            animation: heartbeat 1.2s infinite;
+            transform-origin: center;
+        }
+        
+        .salary-message {
+            font-size: 1.5rem;
+            background: rgba(248, 180, 0, 0.15);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 30px 0;
+            border-left: 4px solid var(--gold);
+            line-height: 1.6;
+        }
+        
+        /* Animations */
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.15); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* تأثيرات إضافية */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(40px);
+        }
+        
+        .circle-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--gold);
+            top: -100px;
+            right: -100px;
+            animation: float-1 15s infinite alternate ease-in-out;
+        }
+        
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--light-gold);
+            bottom: -50px;
+            left: -50px;
+            animation: float-2 12s infinite alternate ease-in-out;
+        }
+        
+        @keyframes float-1 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-50px, 50px); }
+        }
+        
+        @keyframes float-2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, -50px); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                width: 95%;
+            }
+            
+            .logo {
+                width: 140px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .lead-text {
+                font-size: 1.1rem;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+            
+            .celebration-text {
+                font-size: 2.2rem;
+            }
+            
+            .salary-message {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-circle circle-1"></div>
+        <div class="floating-circle circle-2"></div>
+    </div>
+    
+    <div class="container">
+        <!-- شعار الشركة -->
+        <img src="images/nawazilogo.png" alt="شعار نوازي" class="logo">
+        
+        <h1>طفران؟ والشهر طول؟</h1>
+        <p class="lead-text">نوازي جاهزة تنقذك! <span class="highlight">اضغط التالي</span> لتكتشف المفاجأة</p>
+        <button id="nextButton" class="btn">التالي</button>
+    </div>
+    
+    <div id="celebrationMessage" class="hidden">
+        <div class="celebration-container" id="celebration"></div>
+        
+        <div class="celebration-message">
+            <div class="celebration-text">مبرووووووووك <span class="heart">❤</span></div>
+            <div class="salary-message">تم تحويل راتبك بنجاح! سيصبح المبلغ متاحاً خلال 24 ساعة 🎉<br>شكراً لكونك جزءاً من فريق نوازي المتميز</div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('nextButton').addEventListener('click', function() {
+            // إخفاء الزر
+            this.style.transform = 'scale(0)';
+            setTimeout(() => {
+                this.style.display = 'none';
+            }, 300);
+            
+            // عرض رسالة الاحتفال
+            document.getElementById('celebrationMessage').classList.remove('hidden');
+            
+            // تشغيل تأثيرات الاحتفال
+            createConfetti();
+            createSparkles();
+            
+            // يمكنك إضافة صوت احتفال هنا لو أردت
+            // new Audio('celebration-sound.mp3').play();
+        });
+        
+        function createConfetti() {
+            const celebrationDiv = document.getElementById('celebration');
+            const colors = ['gold-confetti', 'white-confetti'];
+            
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.classList.add(colors[Math.floor(Math.random() * colors.length)]);
+                    
+                    // وضع عشوائي
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    
+                    // حجم عشوائي
+                    const size = Math.random() * 10 + 8;
+                    confetti.style.width = size + 'px';
+                    confetti.style.height = size + 'px';
+                    
+                    // مدة وسرعة مختلفة لكل قطعة
+                    const duration = Math.random() * 3 + 3;
+                    confetti.style.animationDuration = duration + 's';
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    
+                    celebrationDiv.appendChild(confetti);
+                    
+                    // إزالة العنصر بعد انتهاء الحركة
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, duration * 1000);
+                }, i * 50);
+            }
+        }
+        
+        function createSparkles() {
+            const celebrationDiv = document.getElementById('celebration');
+            
+            for (let i = 0; i < 50; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                
+                // وضع عشوائي في منطقة الرسالة
+                sparkle.style.left = Math.random() * 80 + 10 + '%';
+                sparkle.style.top = Math.random() * 60 + 20 + '%';
+                
+                celebrationDiv.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+  <script>
+    
+  </script>
+</body>
+</html>
